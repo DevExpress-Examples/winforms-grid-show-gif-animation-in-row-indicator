@@ -12,7 +12,6 @@ namespace DataGridWinApp1
 		[STAThread]
 		static void Main()
 		{
-            WindowsFormsSettings.ForceDirectXPaint();
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new Form1());
