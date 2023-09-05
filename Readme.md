@@ -8,8 +8,30 @@
 
 This example shows how to handle the [CustomDrawRowIndicator](https://docs.devexpress.com/WindowsForms/DevExpress.XtraGrid.Views.Grid.GridView.CustomDrawRowIndicator) event to display a GIF animation in the [row indicator](https://docs.devexpress.com/WindowsForms/554/controls-and-libraries/data-grid/visual-elements/grid-view-elements/row-indicator-panel?p=netframework) of the focused row.
 
-We created a helper class to obtain animation frames and draw them as static images (the `Image` class). The Timer's `Interval` property specifies the animation speed (the longer the interval, the slower the animation).
+```csharp
+private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e) {
+  GridView view = (GridView)sender;
+  if ( e.RowHandle != view.FocusedRowHandle || !view.IsDataRow(e.RowHandle) || imgToDraw == null )
+    return;
+  e.Info.ImageIndex = -1;
+  Point imgLocation = new Point();
+  imgLocation.Y = e.Bounds.Y + e.Bounds.Size.Height / 2 - imgToDraw.Size.Height / 2;
+  imgLocation.X = e.Bounds.X + e.Bounds.Size.Width / 2 - imgToDraw.Size.Width / 2;
+  e.Painter.DrawObject(e.Info);
+  e.Cache.DrawImage(imgToDraw, imgLocation);			
+  e.Handled = true;
+}
+```
 
+We created a helper class (`AnimatedGifImageHelper`) to obtain animation frames and draw them as static images (the `Image` class). The Timer's `Interval` property specifies the animation speed (the longer the interval, the slower the animation).
+
+```csharp
+private void timer1_Tick(object sender, EventArgs e) {
+  imgToDraw = gifHelper.GetNextFrame();
+  // Redraws the row indicator cell that corresponds to the focused row.
+  gridView1.InvalidateRowIndicator(gridView1.FocusedRowHandle);
+}
+```
 
 ## Files to Review
 
@@ -17,3 +39,9 @@ We created a helper class to obtain animation frames and draw them as static ima
 * [DataClass.cs](./CS/DataGridWinApp1/DataClass.cs) (VB: [DataClass.vb](./VB/DataGridWinApp1/DataClass.vb))
 * [Form1.cs](./CS/DataGridWinApp1/Form1.cs) (VB: [Form1.vb](./VB/DataGridWinApp1/Form1.vb))
 * [Program.cs](./CS/DataGridWinApp1/Program.cs) (VB: [Program.vb](./VB/DataGridWinApp1/Program.vb))
+
+
+## Documentation
+
+* [Custom Painting Basics](https://docs.devexpress.com/WindowsForms/762/controls-and-libraries/data-grid/appearance-and-conditional-formatting/custom-painting/custom-painting-basics)
+* [Manually Invalidating Controls](https://docs.devexpress.com/WindowsForms/765/controls-and-libraries/data-grid/appearance-and-conditional-formatting/custom-painting/manually-invalidating-controls)
