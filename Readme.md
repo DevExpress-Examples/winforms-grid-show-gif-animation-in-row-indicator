@@ -47,7 +47,7 @@ private void timer1_Tick(object sender, EventArgs e) {
 * [Custom Painting Basics](https://docs.devexpress.com/WindowsForms/762/controls-and-libraries/data-grid/appearance-and-conditional-formatting/custom-painting/custom-painting-basics)
 * [Manually Invalidating Controls](https://docs.devexpress.com/WindowsForms/765/controls-and-libraries/data-grid/appearance-and-conditional-formatting/custom-painting/manually-invalidating-controls)
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=winforms-grid-show-gif-animation-in-row-indicator&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=winforms-grid-show-gif-animation-in-row-indicator&~~~was_helpful=no)
 
